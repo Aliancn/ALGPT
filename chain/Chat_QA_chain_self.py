@@ -1,15 +1,7 @@
-import re
-import sys
-sys.path.append('../')
-from chain.get_vectordb import get_vectordb
-from chain.model_to_llm import model_to_llm
-from langchain.prompts import PromptTemplate
-from langchain.chains import RetrievalQA
-from langchain.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
-from langchain.memory import ConversationBufferMemory
-from langchain.chat_models import ChatOpenAI
-
+from chain.model_to_llm import model_to_llm
+from chain.get_vectordb import get_vectordb
+import re
 
 
 class Chat_QA_chain_self:
@@ -30,7 +22,7 @@ class Chat_QA_chain_self:
     - embedding_key：使用的embedding模型的秘钥（智谱或者OpenAI）  
     """
 
-    def __init__(self, model: str, temperature: float = 0.0, top_k: int = 4, chat_history: list = [], file_path: str = None, persist_path: str = None, appid: str = None, api_key: str = None, Spark_api_secret: str = None, Wenxin_secret_key: str = None, embedding="openai", embedding_key: str = None):
+    def __init__(self, model: str, temperature: float = 6.0, top_k: int = 4, chat_history: list = [], file_path: str = None, persist_path: str = None, appid: str = None, api_key: str = None, Spark_api_secret: str = None, Wenxin_secret_key: str = None, embedding="openai", embedding_key: str = None):
         self.model = model
         self.temperature = temperature
         self.top_k = top_k

@@ -1,28 +1,36 @@
 import tempfile
-from dotenv import load_dotenv, find_dotenv
 from embedding.call_embedding import get_embedding
 from langchain_community.document_loaders import UnstructuredFileLoader
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyMuPDFLoader
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 import os
-import sys
 import re
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from loglog import logger
 
 # 首先实现基本配置
-
-DEFAULT_DB_PATH = "../database/knowledge_db"
-DEFAULT_PERSIST_PATH = "../vector_db"
+# DEFAULT_DB_PATH = os.path.join(os.path.abspath(
+#     __file__), "../database/knowledge_db")
+DEFAULT_DB_PATH = os.path.join(os.path.dirname(
+    __file__), "knowledge_db")
+# DEFAULT_PERSIST_PATH = os.path.join(os.path.abspath(
+#     __file__), "../vector_db")
+DEFAULT_PERSIST_PATH = os.path.join(os.path.dirname(__file__), "../vector_db")
 
 
 def get_files(dir_path):
-    file_list = []
-    for filepath, dirnames, filenames in os.walk(dir_path):
-        for filename in filenames:
-            file_list.append(os.path.join(filepath, filename))
-    return file_list
+    """
+    获取目录下的所有文件
+
+    Args:
+        dir_path (_type_): _description_
+    """
+    files = []
+    for root, dirs, fs in os.walk(dir_path):
+        for f in fs:
+            files.append(os.path.join(root, f))
+    return files
 
 
 def file_loader(file, loaders):
@@ -44,15 +52,20 @@ def file_loader(file, loaders):
     return
 
 
-def create_db_info(files=DEFAULT_DB_PATH, embeddings="zhipuai", persist_directory=DEFAULT_PERSIST_PATH):
+def create_db_info(files=DEFAULT_DB_PATH, embeddings="m3e", persist_directory=DEFAULT_PERSIST_PATH):
+    """
+    该函数用于加载 PDF 文件，切分文档，生成文档的嵌入向量，创建向量数据库。
+    """
     if files == None:
         vectordb = create_db(embeddings=embeddings)
     if embeddings == 'openai' or embeddings == 'm3e' or embeddings == 'zhipuai':
         vectordb = create_db(files, persist_directory, embeddings)
-    return f"{files} create success"
+
+    logger.info(f"create db success")
+    return f"db create success"
 
 
-def create_db(files=DEFAULT_DB_PATH, persist_directory=DEFAULT_PERSIST_PATH, embeddings="openai"):
+def create_db(dir=DEFAULT_DB_PATH, persist_directory=DEFAULT_PERSIST_PATH, embeddings="m3e"):
     """
     该函数用于加载 PDF 文件，切分文档，生成文档的嵌入向量，创建向量数据库。
 
@@ -63,10 +76,10 @@ def create_db(files=DEFAULT_DB_PATH, persist_directory=DEFAULT_PERSIST_PATH, emb
     返回:
     vectordb: 创建的数据库。
     """
-    if files == None:
-        return "can't load empty file"
-    if type(files) != list:
-        files = [files]
+    logger.info(f"开始创建向量数据库, dir: {dir}, embeddings: {embeddings}")
+    if dir == None:
+        return "can't load empty dir"
+    files = get_files(dir)
     loaders = []
     [file_loader(file, loaders) for file in files]
     docs = []
@@ -79,14 +92,16 @@ def create_db(files=DEFAULT_DB_PATH, persist_directory=DEFAULT_PERSIST_PATH, emb
     split_docs = text_splitter.split_documents(docs)
     if type(embeddings) == str:
         embeddings = get_embedding(embedding=embeddings)
-    # 定义持久化路径
-    persist_directory = '../vector_db/chroma'
     # 加载数据库
+    logger.info(f"文档数量：{len(split_docs)}")
+    logger.info(f"embedding 模型：{embeddings}")
     vectordb = Chroma.from_documents(
         documents=split_docs,
         embedding=embeddings,
         persist_directory=persist_directory  # 允许我们将persist_directory目录保存到磁盘上
     )
+
+    logger.info(f"向量库中存储的数量：{vectordb._collection.count()}")
 
     return vectordb
 
@@ -101,7 +116,7 @@ def presit_knowledge_db(vectordb):
     vectordb.persist()
 
 
-def load_knowledge_db(path, embeddings):
+def load_knowledge_db(path=DEFAULT_PERSIST_PATH, embeddings="m3e"):
     """
     该函数用于加载向量数据库。
 
@@ -120,4 +135,4 @@ def load_knowledge_db(path, embeddings):
 
 
 if __name__ == "__main__":
-    create_db(embeddings="zhipuai")
+    create_db(embeddings="m3e")

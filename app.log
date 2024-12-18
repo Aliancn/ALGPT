@@ -1,0 +1,33 @@
+2024-12-18 23:57:28,573 - SimpleLogger - INFO - 接收到的数据为：prompt='介绍一下设备报销政策' model='glm-4' temperature=0.6 if_history=False api_key=None secret_key=None access_token=None appid=None Spark_api_secret=None Wenxin_secret_key=None db_path='' file_path='' prompt_template='使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答\n案。最多使用三句话。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。\n{context}\n问题: {question}\n有用的回答:' input_variables=['context', 'question'] embedding='m3e' top_k=5 embedding_key=None
+2024-12-18 23:57:28,573 - SimpleLogger - INFO - Using m3e-base model
+2024-12-18 23:57:38,221 - SimpleLogger - INFO - 开始创建向量数据库, dir: , embeddings: model_name='moka-ai/m3e-base' cache_folder=None model_kwargs={} encode_kwargs={} multi_process=False show_progress=False
+2024-12-18 23:57:38,221 - SimpleLogger - INFO - 开始创建向量数据库
+2024-12-18 23:57:38,221 - SimpleLogger - INFO - 文档数量：0
+2024-12-18 23:57:38,221 - SimpleLogger - INFO - embedding 模型：model_name='moka-ai/m3e-base' cache_folder=None model_kwargs={} encode_kwargs={} multi_process=False show_progress=False
+2024-12-19 00:04:01,022 - SimpleLogger - INFO - 接收到的数据为：prompt='介绍一下设备报销政策' model='glm-4' temperature=0.6 if_history=False api_key=None secret_key=None access_token=None appid=None Spark_api_secret=None Wenxin_secret_key=None db_path='' file_path='' prompt_template='使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答\n案。最多使用三句话。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。\n{context}\n问题: {question}\n有用的回答:' input_variables=['context', 'question'] embedding='m3e' top_k=5 embedding_key=None
+2024-12-19 00:04:01,022 - SimpleLogger - INFO - Using m3e-base model
+2024-12-19 00:07:45,657 - SimpleLogger - INFO - 接收到的数据为：prompt='介绍一下设备报销政策' model='glm-4' temperature=0.6 if_history=False api_key=None secret_key=None access_token=None appid=None Spark_api_secret=None Wenxin_secret_key=None db_path='' file_path='' prompt_template='使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答\n案。最多使用三句话。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。\n{context}\n问题: {question}\n有用的回答:' input_variables=['context', 'question'] embedding='m3e' top_k=5 embedding_key=None
+2024-12-19 00:07:45,657 - SimpleLogger - INFO - Using m3e-base model
+2024-12-19 00:09:48,231 - SimpleLogger - INFO - 接收到的数据为：prompt='介绍一下设备报销政策' model='glm-4' temperature=0.6 if_history=False api_key=None secret_key=None access_token=None appid=None Spark_api_secret=None Wenxin_secret_key=None db_path='' file_path='' prompt_template='使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答\n案。最多使用三句话。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。\n{context}\n问题: {question}\n有用的回答:' input_variables=['context', 'question'] embedding='m3e' top_k=5 embedding_key=None
+2024-12-19 00:09:48,231 - SimpleLogger - INFO - Using m3e-base model
+2024-12-19 00:10:45,207 - SimpleLogger - INFO - 接收到的数据为：prompt='介绍一下设备报销政策' model='glm-4' temperature=0.6 if_history=False api_key=None secret_key=None access_token=None appid=None Spark_api_secret=None Wenxin_secret_key=None db_path='' file_path='' prompt_template='使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答\n案。最多使用三句话。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。\n{context}\n问题: {question}\n有用的回答:' input_variables=['context', 'question'] embedding='m3e' top_k=5 embedding_key=None
+2024-12-19 00:10:45,207 - SimpleLogger - INFO - Using m3e-base model
+2024-12-19 00:11:21,613 - SimpleLogger - INFO - 开始创建向量数据库, dir: /home/aliancn/code/ALGPT/database/knowledge_db, embeddings: m3e
+2024-12-19 00:11:23,389 - SimpleLogger - INFO - Using m3e-base model
+2024-12-19 00:11:27,246 - SimpleLogger - INFO - 文档数量：88
+2024-12-19 00:11:27,246 - SimpleLogger - INFO - embedding 模型：model_name='moka-ai/m3e-base' cache_folder=None model_kwargs={} encode_kwargs={} multi_process=False show_progress=False
+2024-12-19 00:11:27,962 - SimpleLogger - INFO - 向量库中存储的数量：573
+2024-12-19 00:11:27,962 - SimpleLogger - INFO - create db success
+2024-12-19 00:12:42,846 - SimpleLogger - INFO - Files added: ['/tmp/gradio/c085598d0e1d7dcc5b27ef90c602fba90d32556705009c24b18789b19c5330c8/policy.pdf']
+2024-12-19 00:12:46,821 - SimpleLogger - INFO - Files added: ['/tmp/gradio/c085598d0e1d7dcc5b27ef90c602fba90d32556705009c24b18789b19c5330c8/policy.pdf']
+2024-12-19 00:12:49,286 - SimpleLogger - INFO - 开始创建向量数据库, dir: /home/aliancn/code/ALGPT/database/knowledge_db, embeddings: m3e
+2024-12-19 00:12:50,889 - SimpleLogger - INFO - Using m3e-base model
+2024-12-19 00:12:59,904 - SimpleLogger - INFO - 文档数量：88
+2024-12-19 00:12:59,904 - SimpleLogger - INFO - embedding 模型：model_name='moka-ai/m3e-base' cache_folder=None model_kwargs={} encode_kwargs={} multi_process=False show_progress=False
+2024-12-19 00:13:01,133 - SimpleLogger - INFO - 向量库中存储的数量：661
+2024-12-19 00:13:01,133 - SimpleLogger - INFO - 开始创建向量数据库, dir: None, embeddings: m3e
+2024-12-19 00:13:01,133 - SimpleLogger - INFO - create db success
+2024-12-19 00:13:21,221 - SimpleLogger - INFO - prompt: 
+User: 梅园的政策
+Assistant:
+2024-12-19 00:13:22,534 - SimpleLogger - INFO - Using m3e-base model

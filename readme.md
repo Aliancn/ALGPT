@@ -48,14 +48,14 @@
 - 启动服务为本地 API
 
 ```shell
-cd project/serve
+cd project
 python api.py
 ```
 
 - 运行项目
 
 ```shell
-cd llm-universe/project/serve
+cd project
 python run_gradio.py 
 ```
 

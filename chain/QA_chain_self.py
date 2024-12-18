@@ -1,13 +1,8 @@
-import re
-import sys
-sys.path.append("../")
-from chain.get_vectordb import get_vectordb
-from chain.model_to_llm import model_to_llm
-from langchain.prompts import PromptTemplate
-from langchain.chains import RetrievalQA
-from langchain_community.vectorstores import Chroma
 from langchain.chains import ConversationalRetrievalChain
-
+from langchain.prompts import PromptTemplate
+from chain.model_to_llm import model_to_llm
+from chain.get_vectordb import get_vectordb
+import re
 
 
 class QA_chain_self():
@@ -34,7 +29,7 @@ class QA_chain_self():
     问题: {question}
     有用的回答:"""
 
-    def __init__(self, model: str, temperature: float = 0.0, top_k: int = 4,  file_path: str = None, persist_path: str = None, appid: str = None, api_key: str = None, Spark_api_secret: str = None, Wenxin_secret_key: str = None, embedding="zhupuai",  embedding_key=None, template=default_template_rq):
+    def __init__(self, model: str = "glm-4", temperature: float = 6.0, top_k: int = 4,  file_path: str = None, persist_path: str = None, appid: str = None, api_key: str = None, Spark_api_secret: str = None, Wenxin_secret_key: str = None, embedding="m3e",  embedding_key=None, template=default_template_rq):
         self.model = model
         self.temperature = temperature
         self.top_k = top_k
@@ -94,7 +89,7 @@ class QA_chain_self():
 
 
 if __name__ == '__main__':
-    qa_chain = QA_chain_self(model='glm-4', temperature=0.0,
-                             top_k=4, file_path='../database/knowledge_db', persist_path='../vector_db/chroma', embedding='zhipuai')
+    qa_chain = QA_chain_self(model='glm-4', temperature=0.6,
+                             top_k=6, file_path='../database/knowledge_db', persist_path='../vector_db/chroma', embedding='zhipuai')
     question = "梅二的规定有哪些？"
     print(qa_chain.answer(question=question))

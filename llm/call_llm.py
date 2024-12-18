@@ -1,8 +1,8 @@
 from email import message
 import os
 from dotenv import find_dotenv, load_dotenv
-from langchain.utils import get_from_dict_or_env
-import openai
+from langchain_core.utils import get_from_dict_or_env
+# import openai
 import zhipuai
 
 
@@ -39,7 +39,8 @@ def get_completion(prompt: str, model: str, temperature=0.1, api_key=None, secre
     # return: 模型返回，字符串
     # 调用 GPT
     if model in ["gpt-3.5-turbo", "gpt-3.5-turbo-16k-0613", "gpt-3.5-turbo-0613", "gpt-4", "gpt-4-32k"]:
-        return get_completion_gpt(prompt, model, temperature, api_key, max_tokens)
+        # return get_completion_gpt(prompt, model, temperature, api_key, max_tokens)
+        return "不支持的模型"
     # elif model in ["ERNIE-Bot", "ERNIE-Bot-4", "ERNIE-Bot-turbo"]:
         # return get_completion_wenxin(prompt, model, temperature, api_key, secret_key)
     # elif model in ["Spark-1.5", "Spark-2.0"]:
@@ -50,21 +51,21 @@ def get_completion(prompt: str, model: str, temperature=0.1, api_key=None, secre
         return "不正确的模型"
 
 
-def get_completion_gpt(prompt: str, model: str, temperature: float, api_key: str, max_tokens: int):
-    # 封装 OpenAI 原生接口
-    if api_key == None:
-        api_key = parse_llm_api_key("openai")
-    openai.api_key = api_key
-    # 具体调用
-    messages = [{"role": "user", "content": prompt}]
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=temperature,  # 模型输出的温度系数，控制输出的随机程度
-        max_tokens=max_tokens,  # 回复最大长度
-    )
-    # 调用 OpenAI 的 ChatCompletion 接口
-    return response.choices[0].message["content"]
+# def get_completion_gpt(prompt: str, model: str, temperature: float, api_key: str, max_tokens: int):
+#     # 封装 OpenAI 原生接口
+#     if api_key == None:
+#         api_key = parse_llm_api_key("openai")
+#     openai.api_key = api_key
+#     # 具体调用
+#     messages = [{"role": "user", "content": prompt}]
+#     response = openai.ChatCompletion.create(
+#         model=model,
+#         messages=messages,
+#         temperature=temperature,  # 模型输出的温度系数，控制输出的随机程度
+#         max_tokens=max_tokens,  # 回复最大长度
+#     )
+#     # 调用 OpenAI 的 ChatCompletion 接口
+#     return response.choices[0].message["content"]
 
 
 def get_completion_glm(prompt: str, model: str, temperature: float, api_key: str, max_tokens: int):

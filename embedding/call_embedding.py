@@ -1,14 +1,16 @@
 from llm.call_llm import parse_llm_api_key
 from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.embeddings import ZhipuAIEmbeddings
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from loglog import logger
 
 
 def get_embedding(embedding: str, embedding_key: str = None, env_file: str = None):
+    """
+    该函数用于加载 Embedding 模型
+    """
     if embedding == 'm3e':
+        logger.info("Using m3e-base model")
         return HuggingFaceEmbeddings(model_name="moka-ai/m3e-base")
     if embedding_key == None:
         embedding_key = parse_llm_api_key(embedding)
